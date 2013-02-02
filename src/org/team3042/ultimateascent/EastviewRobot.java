@@ -1,8 +1,5 @@
 package org.team3042.ultimateascent;
 
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SimpleRobot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -11,21 +8,13 @@ import edu.wpi.first.wpilibj.Timer;
  * @author jjkoletar
  */
 public class EastviewRobot extends SimpleRobot {
-    /**
-     * This function is called once each time the robot enters autonomous mode.
-     */
     public void autonomous() {
 
     }
 
-    /**
-     * This function is called once each time the robot enters operator control.
-     */
     public void operatorControl() {
         Bot.Hardware.DRIVETRAIN.setSafetyEnabled(true);
-        while (isOperatorControl() && isEnabled()) {
-            //TeleOp Loop
-
+        while (isOperatorControl() && isEnabled()) { //Teleop Loop, executed while robot runs
             //Drivetrain
             Bot.Hardware.DRIVETRAIN.arcadeDrive(scale(Bot.Input.driver.getY()), scale(Bot.Input.driver.getTwist()));
 
@@ -38,9 +27,6 @@ public class EastviewRobot extends SimpleRobot {
         return ((Bot.Input.driver.getThrottle() + 1) / 2) * in;
     }
 
-    /**
-     * This function is called once each time the robot enters test mode.
-     */
     public void test() {
 
     }
