@@ -28,6 +28,6 @@ public final class Bot {
     }
     public static final class Constants {
         private Constants() {}
-        public static final double ACTUATOR_COEFFICIENT = 0.5;
+        public static final double ACTUATOR_COEFFICIENT = 1.0;
     }
 }
