@@ -9,10 +9,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author jjkoletar
  */
 public class EastviewRobot extends SimpleRobot {
+    public void robotInit() {
+        super.robotInit();
+        System.out.println("This is the Competition Code used by Team 3042 for the FRC Ultimate Ascent Game");
+        System.out.println("[INFO] Robot Enabled!");
+    }
+
     public void autonomous() {
     }
 
     public void operatorControl() {
+        System.out.println("[INFO] Entered Teleop");
         Bot.Hardware.DRIVETRAIN.setSafetyEnabled(true);
         while (isOperatorControl() && isEnabled()) { //Teleop Loop, executed while robot runs
             //Drivetrain
@@ -34,8 +41,9 @@ public class EastviewRobot extends SimpleRobot {
             SmartDashboard.putNumber("Actuator In", Bot.Input.gunner.getY());
             SmartDashboard.putNumber("Actuator Scaled", scaleActuators(Bot.Input.gunner.getY()));
             SmartDashboard.putBoolean("Actuator Limit Switch", Bot.Input.ACTUATOR_LIMIT_SWITCH.get());
-            if (Bot.Input.ACTUATOR_LIMIT_SWITCH.get()) {
-                Bot.Hardware.LEFT_ACTUATOR.set(scaleActuators(Bot.Input.gunner.getY()));
+            if (!Bot.Input.ACTUATOR_LIMIT_SWITCH.get()) {
+               // Bot.Hardware.LEFT_ACTUATOR.set(scaleActuators(Bot.Input.gunner.getY()));
+                Bot.Hardware.LEFT_ACTUATOR.set(0.0);
                 Bot.Hardware.RIGHT_ACTUATOR.set(scaleActuators(Bot.Input.gunner.getY()));
             } else {
                 Bot.Hardware.LEFT_ACTUATOR.set(0.0);
@@ -55,6 +63,7 @@ public class EastviewRobot extends SimpleRobot {
     }
 
     public void test() {
+        System.out.println("[INFO] Entered Test");
         while (isTest() && isEnabled()) {
             Bot.Hardware.DRIVETRAIN.arcadeDrive(0.5, 0.0);
             Bot.Hardware.LEFT_JAG.set(0.5);
